@@ -1,0 +1,169 @@
+1. SELECT DISTINCT maker, type FROM product WHERE type='laptop' ORDER BY maker
+
+2. SELECT model, ram, screen, price  FROM laptop WHERE price>1000 ORDER BY ram, price DESC
+
+3. SELECT * FROM printer WHERE color='y' ORDER BY price DESC
+
+4. SELECT model, speed, hd, cd, price FROM PC WHERE (cd='12x' OR cd='24x') 
+AND (price < 600) ORDER BY speed DESC
+
+5. SELECT name, class FROM ships WHERE name=class ORDER BY name
+
+6. SELECT model, speed, hd, cd, price FROM PC WHERE (speed>=500)
+AND (price < 800) ORDER BY price DESC
+
+7. SELECT * FROM printer  WHERE (type<>'matrix') AND (price < 300) ORDER BY type DESC
+
+8. SELECT model, speed FROM PC WHERE price between 400 and 600 ORDER BY hd
+
+9. SELECT model, speed, hd, price FROM laptop WHERE screen>=12 ORDER BY price DESC
+
+10. SELECT model, type, price FROM printer WHERE price<300 ORDER BY price DESC
+
+11. SELECT model, ram, price FROM laptop WHERE ram=64 ORDER BY screen
+
+12. SELECT model, ram, price FROM PC WHERE ram>64 ORDER BY hd
+
+13. SELECT model, speed, price FROM PC WHERE speed between 500 AND 750 ORDER BY hd DESC
+
+14. SELECT cast(date as date) date, out  FROM Outcome_o WHERE out > 2000 ORDER BY date DESC
+
+15. SELECT cast(date as date) date, inc  FROM Income_o WHERE inc BETWEEN 5000 AND 10000 ORDER BY inc
+
+16. SELECT cast(date as date) date, inc  FROM Income WHERE point = 1 ORDER BY inc
+
+17. SELECT cast(date as date) date, out  FROM Outcome WHERE point = 2 ORDER BY out
+
+18. SELECT class  FROM classes WHERE country = 'Japan' ORDER BY type Desc		
+
+19. SELECT name, launched FROM ships WHERE (launched >=1920) AND  (launched <=1942) ORDER BY launched DESC
+
+20. SELECT ship, battle, result FROM outcomes WHERE result<>'sunk' AND battle='Guadalcanal' ORDER BY ship DESC
+
+21. SELECT ship, battle, result FROM outcomes WHERE result='sunk' ORDER BY ship DESC
+
+22. SELECT class, displacement FROM classes WHERE displacement>=40000 ORDER BY type ASC
+
+23. SELECT trip_no, town_from, town_to FROM trip WHERE town_from='London' OR town_to='London' ORDER BY time_out
+
+24. SELECT trip_no, town_from, town_to FROM trip WHERE plane='TU-134' ORDER BY time_out DESC
+
+25. SELECT trip_no, town_from, town_to FROM trip WHERE plane='IL-86' ORDER BY plane
+
+26. SELECT trip_no, town_from, town_to FROM trip WHERE town_from<>'Rostov' AND town_to<>'Rostov' ORDER BY plane
+
+27. SELECT model FROM pc WHERE model like '%1%1%'
+
+28. SELECT *  FROM Outcome WHERE MONTH(date)=3
+
+29. SELECT *  FROM outcome_o WHERE DAY(date)=14
+
+30. SELECT name from ships WHERE name LIKE 'W%n'
+
+31. SELECT name from ships WHERE name LIKE '%ee%'
+
+32. SELECT name, launched from ships WHERE name NOT LIKE '%a'
+
+33. SELECT name from battles WHERE name LIKE '% %' AND name not like '%c'
+
+34. SELECT * FROM trip WHERE CAST(time_out AS TIME) >='12:00' AND CAST(time_out AS TIME) <='17:00'
+
+35. SELECT * FROM trip WHERE CAST(time_in AS TIME) >='17:00' AND CAST(time_in AS TIME) <='23:00'
+
+36. SELECT * FROM trip WHERE  (CAST(time_in AS TIME) >='21:00' AND CAST(time_in AS TIME) <='23:59')
+OR
+(CAST(time_in AS TIME) >='00:00' AND CAST(time_in AS TIME) <='10:00')
+
+37. SELECT CAST(date as date) date, place FROM Pass_in_trip WHERE place like '1%'
+
+38. SELECT CAST(date as date) date, place FROM Pass_in_trip WHERE place like '%c'
+
+39. SELECT name FROM passenger WHERE name like '% c%'
+
+40. SELECT name FROM passenger WHERE name NOT like '% J%'
+
+41. SELECT AVG(price) as 'середня ціна = ' from laptop 
+
+42. SELECT 'Код: ' + CAST(code as varchar(50)),
+'Модель: ' + model, 'ціна: ' + CAST(price as varchar(50))
+ FROM PC 
+
+43. SELECT CAST(date as date) date FROM income
+
+44. SELECT ship, battle, 
+case when result = 'sunk' then 'потоплений' 
+else case when result = 'OK' then 'цілий' 
+else case when result = 'damaged' then 'пошкоджений' end end end res
+ FROM outcomes
+
+45. SELECT 'ряд: ' + LEFT(place, 1) + ' місце: ' + RIGHT(place, 9) as [Location]
+ FROM pass_in_trip
+
+46. SELECT plane, 'from ' + RTRIM(town_from) + ' to ' + RTRIM(town_to) AS from_to,
+time_out, time_in FROM trip
+
+47. SELECT LEFT(trip_no, 1) + RIGHT(trip_no,1) trip_no, 
+LEFT(id_comp, 1) + RIGHT(id_comp,1) id_comp,
+LEFT(RTRIM(plane), 1) + RIGHT(RTRIM(plane),1) plane,
+Left(RTRIM(town_from), 1) + RIGHT(RTRIM(town_from),1) AS town_from,
+Left(RTRIM(town_to), 1) + RIGHT(RTRIM(town_to),1) AS town_to,
+Left(RTRIM(time_out), 1) + RIGHT(RTRIM(time_out),1) AS time_out, 
+Left(RTRIM(CAST(time_out as time)), 1)+Right(RTRIM(CAST(time_out as time)), 1) time_out,
+Left(RTRIM(CAST(time_in as time)), 1)+Right(RTRIM(CAST(time_in as time)), 1) time_in
+ FROM trip
+
+АБО (якщо всі поя в одному, то нижче:)
+
+SELECT LEFT(trip_no, 1) + RIGHT(trip_no,1) + 
+LEFT(id_comp, 1) + RIGHT(id_comp,1) +
+LEFT(RTRIM(plane), 1) + RIGHT(RTRIM(plane),1) +
+Left(RTRIM(town_from), 1) + RIGHT(RTRIM(town_from),1) +
+Left(RTRIM(town_to), 1) + RIGHT(RTRIM(town_to),1) +
+Left(RTRIM(time_out), 1) + RIGHT(RTRIM(time_out),1) + 
+Left(RTRIM(CAST(time_out as time)), 1)+Right(RTRIM(CAST(time_out as time)), 1) +
+Left(RTRIM(CAST(time_in as time)), 1)+Right(RTRIM(CAST(time_in as time)), 1) From_all_on_2
+ FROM trip
+
+48. SELECT maker, COUNT(model) FROM product 
+WHERE type='pc'
+GROUP BY maker HAVING COUNT(model) >=2
+
+49. SELECT town_from, sum( quan) as quan from
+(
+SELECT town_from, count( trip_no ) as quan from trip
+GROUP BY town_from 
+UNION all
+SELECT town_to as town_from, count( trip_no ) as quan from trip
+GROUP BY town_to
+)q
+GROUP BY town_from
+
+50. SELECT type, COUNT(model) as quantity FROM printer GROUP BY type
+
+51. SELECT cd, COUNT(model) as model_quan FROM pc 
+GROUP BY cd 
+
+52.   SELECT trip_no, CAST(time_in-time_out AS time) [fly time] FROM trip
+
+53. SELECT CAST(point as varchar) point, date, SUM(out) as sum FROM outcome GROUP BY  point, date
+UNION
+SELECT  'Total:', NULL, SUM(out) FROM outcome
+UNION
+SELECT  'Max sum:', NULL, MAX(sum) FROM
+(
+   SELECT CAST(point as varchar) point, date, SUM(out) as sum FROM outcome GROUP BY  point, date
+)q1
+UNION
+SELECT  'Min sum:', NULL, MIN(sum) FROM
+(
+   SELECT CAST(point as varchar) point, date, SUM(out) as sum FROM outcome GROUP BY  point, date
+)q1
+
+54. SELECT trip_no, row, COUNT(row) as count FROM
+(
+SELECT trip_no, LEFT(place, 1) as row FROM pass_in_trip
+)q
+GROUP BY row, trip_no
+
+55. SELECT COUNT(id_psg) as [passenger count] FROM passenger
+WHERE (name LIKE '% A%') OR (name LIKE '% B%') OR (name LIKE '% S%')
