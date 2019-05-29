@@ -2,7 +2,7 @@ use V_Kichula_module_2
 --drop trigger trg_upd_rfg
 go
 create trigger trg_upd_rfg on Refrigerator 
-after update, insert, delete as
+after update as
 begin
 	if @@ROWCOUNT=0 return
 	declare @ins as int = (select count(*) from inserted) 
