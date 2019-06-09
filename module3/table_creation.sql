@@ -1,6 +1,6 @@
+--Привіт експертам. Використовував sql server 2014.
+
 use master
-go
-drop database V_Kichula_module3
 go
 create database V_Kichula_module3
 go
