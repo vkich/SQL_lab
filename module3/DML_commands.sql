@@ -5,11 +5,12 @@ update Suppliers set rating=rating+10 where rating <
 (select rating from Suppliers where SupplierId=4)
 
 --2
-select ProductId from Products where city='London'
+select ProductId into #l_table from Products where city='London'
 union
 select s.ProductId from Supplies s join
 Suppliers sp on sp.SupplierId=s.SupplierId
 where sp.city='London'
+select * from #l_table
 
 --3
 delete from Products where ProductId 
