@@ -7,8 +7,8 @@ select EmpFirstName, EmpLastName, EmpPhoneNumber from Employees
 
 --3
 --select CategoryDescription from Categories 
-/* Спочатку зробив так як у коментарі вище, потім начитався інфо у групі і
-вибрав варіант, записаний нижче  */
+/* РЎРїРѕС‡Р°С‚РєСѓ Р·СЂРѕР±РёРІ С‚Р°Рє СЏРє Сѓ РєРѕРјРµРЅС‚Р°СЂС– РІРёС‰Рµ, РїРѕС‚С–Рј РЅР°С‡РёС‚Р°РІСЃСЏ С–РЅС„Рѕ Сѓ РіСЂСѓРїС– С–
+РІРёР±СЂР°РІ РІР°СЂС–Р°РЅС‚, Р·Р°РїРёСЃР°РЅРёР№ РЅРёР¶С‡Рµ  */
 select distinct C.CategoryDescription from Order_Details od
 LEFT JOIN Products p ON p.ProductNumber=od.ProductNumber 
 JOIN Categories c ON c.CategoryID=p.CategoryID
@@ -41,9 +41,9 @@ select * from Employees
 
 --11
 --select distinct VendName, VendCity from Vendors v
---Думаю так: У таблиці Vendors має бути інфо про усіх постачальників,
--- але актуальні замовлення у Order_Details, тому начитавшись інфо від менторів
--- і не тільки, залишаю варіант нижче
+--Р”СѓРјР°СЋ С‚Р°Рє: РЈ С‚Р°Р±Р»РёС†С– Vendors РјР°С” Р±СѓС‚Рё С–РЅС„Рѕ РїСЂРѕ СѓСЃС–С… РїРѕСЃС‚Р°С‡Р°Р»СЊРЅРёРєС–РІ,
+-- Р°Р»Рµ Р°РєС‚СѓР°Р»СЊРЅС– Р·Р°РјРѕРІР»РµРЅРЅСЏ Сѓ Order_Details, С‚РѕРјСѓ РЅР°С‡РёС‚Р°РІС€РёСЃСЊ С–РЅС„Рѕ РІС–Рґ РјРµРЅС‚РѕСЂС–РІ
+-- С– РЅРµ С‚С–Р»СЊРєРё, Р·Р°Р»РёС€Р°СЋ РІР°СЂС–Р°РЅС‚ РЅРёР¶С‡Рµ
 select distinct VendName, VendCity from Order_Details od join Products p
 	ON od.ProductNumber=p.ProductNumber join Product_Vendors PV
 	ON p.ProductNumber=PV.ProductNumber JOIN Vendors v
