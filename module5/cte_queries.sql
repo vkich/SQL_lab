@@ -32,9 +32,9 @@ ORDER BY StartDate
 
 --calendar
 --select @@DATEFIRST	
---так як відлітаю на тиждень до Осло, то змушений надати варіант з допомогою
---сайту http://www.kodyaz.com/t-sql/create-monthly-calendar-using-sql.aspx
---але мені цікаво зробити самому (може колись зроблю, буду відсутній з 08.07.19 до 15.07.19.
+--С‚Р°Рє СЏРє РІС–РґР»С–С‚Р°СЋ РЅР° С‚РёР¶РґРµРЅСЊ РґРѕ РћСЃР»Рѕ, С‚Рѕ Р·РјСѓС€РµРЅРёР№ РЅР°РґР°С‚Рё РІР°СЂС–Р°РЅС‚ Р· РґРѕРїРѕРјРѕРіРѕСЋ
+--СЃР°Р№С‚Сѓ http://www.kodyaz.com/t-sql/create-monthly-calendar-using-sql.aspx
+--Р°Р»Рµ РјРµРЅС– С†С–РєР°РІРѕ Р·СЂРѕР±РёС‚Рё СЃР°РјРѕРјСѓ (РјРѕР¶Рµ РєРѕР»РёСЃСЊ Р·СЂРѕР±Р»СЋ, Р±СѓРґСѓ РІС–РґСЃСѓС‚РЅС–Р№ Р· 08.07.19 РґРѕ 15.07.19.
 /*
 ;with main_calendar (d, n) as ( select dateadd(mm, 1, getdate() - day(getdate()) + 1) - 1, datename(dw, dateadd(mm, 1, getdate() - day(getdate()) + 1) - 1)
 UNION ALL
